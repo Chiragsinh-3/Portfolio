@@ -69,7 +69,7 @@ export function ContactSection() {
     <section
       id='contact'
       ref={sectionRef}
-      className='section-padding bg-muted/5'
+      className='section-padding bg-muted/5 mb-10'
     >
       <div className='container mx-auto'>
         <div className='text-center mb-16'>
@@ -97,7 +97,7 @@ export function ContactSection() {
               </p>
             </div>
 
-            <div className=' grid lg:grid-cols-2'>
+            <div className=' grid lg:grid-cols-2 gap-6'>
               <div className='space-y-6'>
                 <div className='flex items-center gap-4'>
                   <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
