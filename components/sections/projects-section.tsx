@@ -51,10 +51,10 @@ const projects: Project[] = [
 		description:
 			"A responsive portfolio website showcasing my projects and skills with modern animations and clean design.",
 		image: "/portfolio.png",
-		technologies: ["React", "Tailwind CSS", "Framer Motion"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/chiragkachhela",
-		featured: false,
+		technologies: ["Next.js", "Tailwind CSS", "GSAP"],
+		liveUrl: "https://chirag-fulldev.vercel.app/",
+		githubUrl: "https://github.com/Chiragsinh-3/Portfolio",
+		featured: true,
 	},
 ]
 
@@ -373,7 +373,7 @@ export function ProjectsSection() {
 						variant="outline"
 						size="lg"
 						className="px-8 py-6 text-lg font-medium transition-all duration-300 ease-out transform hover:scale-[1.02] bg-gradient-to-r from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl dark:text-white"
-						onClick={() => openUrl("https://github.com/Chiragsinh-3?tab=repositories")}
+						onClick={() => openUrl("https://github.com/Chiragsinh-3")}
 					>
 						<span
 							ref={githubBtnTextRef}

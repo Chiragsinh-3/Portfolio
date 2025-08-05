@@ -1,30 +1,30 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useEffect, useRef, useState } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Send, Linkedin, Github } from "lucide-react";
 
 export function ContactSection() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return
+    if (typeof window === "undefined") return;
 
-    const section = sectionRef.current
-    if (!section) return
+    const section = sectionRef.current;
+    if (!section) return;
 
     ScrollTrigger.create({
       trigger: section,
@@ -36,97 +36,148 @@ export function ContactSection() {
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
-        })
+        });
       },
-    })
-  }, [])
+    });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Reset form
-    setFormData({ name: "", email: "", message: "" })
-    setIsSubmitting(false)
+    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(false);
 
     // Show success message (you would implement this)
-    alert("Message sent successfully!")
-  }
+    alert("Message sent successfully!");
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   return (
-    <section id="contact" ref={sectionRef} className="section-padding bg-muted/5">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full"></div>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Ready to start your next project? Let's discuss how we can work together.
+    <section
+      id='contact'
+      ref={sectionRef}
+      className='section-padding bg-muted/5'
+    >
+      <div className='container mx-auto'>
+        <div className='text-center mb-16'>
+          <h2 className='text-3xl md:text-4xl font-playfair font-bold mb-4'>
+            Get In Touch
+          </h2>
+          <div className='w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full'></div>
+          <p className='text-muted-foreground mt-4 max-w-2xl mx-auto'>
+            Ready to start your next project? Let's discuss how we can work
+            together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className=' gap-12 max-w-6xl mx-auto'>
           {/* Contact Info */}
-          <div className="contact-content space-y-8">
+          <div className='contact-content space-y-8'>
             <div>
-              <h3 className="text-2xl font-playfair font-bold mb-6">Let's Connect</h3>
-              <p className="text-muted-foreground mb-8">
-                I'm always interested in hearing about new opportunities and exciting projects. Whether you have a
-                question or just want to say hi, feel free to reach out!
+              <h3 className='text-2xl font-playfair font-bold mb-6'>
+                Let's Connect
+              </h3>
+              <p className='text-muted-foreground mb-8'>
+                I'm always interested in hearing about new opportunities and
+                exciting projects. Whether you have a question or just want to
+                say hi, feel free to reach out!
               </p>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-primary" />
+            <div className=' grid lg:grid-cols-2'>
+              <div className='space-y-6'>
+                <div className='flex items-center gap-4'>
+                  <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
+                    <Mail className='h-5 w-5 text-primary' />
+                  </div>
+                  <div>
+                    <p className='font-medium'>Email</p>
+                    <a
+                      href='mailto:kachhelachiragsinh@gmail.com'
+                      className='text-muted-foreground hover:text-primary transition-colors'
+                    >
+                      kachhelachiragsinh@gmail.com
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium">Email</p>
-                  <a
-                    href="mailto:kachhelachiragsinh@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    kachhelachiragsinh@gmail.com
-                  </a>
+
+                <div className='flex items-center gap-4'>
+                  <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
+                    <Phone className='h-5 w-5 text-primary' />
+                  </div>
+                  <div>
+                    <p className='font-medium'>Phone</p>
+                    <a
+                      href='tel:+919023539672'
+                      className='text-muted-foreground hover:text-primary transition-colors'
+                    >
+                      +91 9023539672
+                    </a>
+                  </div>
+                </div>
+                <div className='flex  gap-4'>
+                  <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
+                    <Github className='h-5 w-5 text-primary' />
+                  </div>
+                  <div>
+                    <p className='font-medium'>Github</p>
+                    <a
+                      href='https://github.com/Chiragsinh-3'
+                      className='text-muted-foreground hover:text-primary transition-colors'
+                      target='_blank'
+                    >
+                      Chiragsinh-3
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-primary" />
+              <div className='space-y-6'>
+                <div className='flex  gap-4'>
+                  <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
+                    <Linkedin className='h-5 w-5 text-primary' />
+                  </div>
+                  <div>
+                    <p className='font-medium'>Linkedin</p>
+                    <a
+                      href='https://www.linkedin.com/in/chirag-kachhela'
+                      className='text-muted-foreground hover:text-primary transition-colors'
+                      target='_blank'
+                    >
+                      chirag-kachhela
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-medium">Phone</p>
-                  <a href="tel:+919023539672" className="text-muted-foreground hover:text-primary transition-colors">
-                    +91 9023539672
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-medium">Location</p>
-                  <p className="text-muted-foreground">Surat, Gujarat, India</p>
+                <div className='flex  gap-4'>
+                  <div className='w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center'>
+                    <MapPin className='h-5 w-5 text-primary' />
+                  </div>
+                  <div>
+                    <p className='font-medium'>Location</p>
+                    <p className='text-muted-foreground'>
+                      Surat, Gujarat, India
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="contact-content ">
+          {/* <div className="contact-content ">
             <Card className="glass-effect border-0">
               <CardHeader>
                 <CardTitle className="text-white">Send a Message</CardTitle>
@@ -171,7 +222,7 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                    className="w-full bg-gradient-to-r from-primary/50 to-purple-600/50 hover:from-primary/50 hover:to-purple-700/50"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                     <Send className="ml-2 h-4 w-4" />
@@ -179,9 +230,9 @@ export function ContactSection() {
                 </form>
               </CardContent>
             </Card>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
-  )
+  );
 }

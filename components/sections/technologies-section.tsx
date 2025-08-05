@@ -18,12 +18,7 @@ const technologies = [
 		color: "from-oxford_blue-600 to-oxford_blue-800",
 		description: "Typed JavaScript superset",
 	},
-	{
-		name: "Python",
-		icon: "🐍",
-		color: "from-orange_web-500 to-orange_web-700",
-		description: "Versatile programming language",
-	},
+	
 	{
 		name: "Next.js",
 		icon: "▲",
@@ -53,6 +48,12 @@ const technologies = [
 		icon: "🍃",
 		color: "from-oxford_blue-400 to-oxford_blue-600",
 		description: "NoSQL database solution",
+	},
+	{
+		name: "Python",
+		icon: "🐍",
+		color: "from-orange_web-500 to-orange_web-700",
+		description: "Versatile programming language",
 	},
 	{
 		name: "Tailwind CSS",
