@@ -25,9 +25,13 @@ export default function Home() {
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
           smooth: 1.2,
-          effects: true,
-          smoothTouch: 0.3,
+          effects: false,
+          normalizeScroll: true,
+          ignoreMobileResize: true,
+          smoothTouch: 0.1,
         })
+
+
 
         // Initial refresh after a short delay to ensure DOM is ready
         setTimeout(() => {

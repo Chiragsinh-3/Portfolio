@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import {  useLayoutEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import HeroGeometric from "@/components/hero-geometric"
@@ -8,7 +8,7 @@ import HeroGeometric from "@/components/hero-geometric"
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (typeof window === "undefined") return
     gsap.registerPlugin(ScrollTrigger)
     const section = sectionRef.current

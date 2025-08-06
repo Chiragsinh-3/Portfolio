@@ -122,6 +122,9 @@ html {
   background: rgba(80, 61, 19, 0.122);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(252, 163, 17, 0.1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .section-padding {
@@ -140,9 +143,22 @@ html {
   }
 }
 
-/* Smooth scrolling for all elements */
+/* Remove or comment out this block as it conflicts with ScrollSmoother
 * {
   scroll-behavior: smooth;
+}
+*/
+
+/* Add GPU acceleration for smoother animations */
+#smooth-wrapper {
+  will-change: transform;
+}
+
+/* Force hardware acceleration */
+.glass-effect {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Custom scrollbar */
