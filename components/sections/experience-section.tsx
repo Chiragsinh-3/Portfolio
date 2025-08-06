@@ -132,10 +132,10 @@ export function ExperienceSection() {
 													{exp.period}
 												</span>
 											</div>
-											<CardTitle className="text-2xl font-bold leading-tight text-primary">
+											<CardTitle className="text-2xl font-semibold leading-7 text-white">
 												{exp.title}
 											</CardTitle>
-											<p className="text-lg font-medium text-blue-500 dark:text-blue-400">
+											<p className="text-md font-medium text-blue-500 dark:text-blue-400">
 												{exp.company}
 											</p>
 										</CardHeader>
