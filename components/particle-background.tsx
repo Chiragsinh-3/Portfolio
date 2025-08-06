@@ -6,30 +6,34 @@ export function ParticleBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    let animationId: number
+    let animationId: number;
     const particles: Array<{
-      x: number
-      y: number
-      vx: number
-      vy: number
-      size: number
-      opacity: number
-    }> = []
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      opacity: number;
+    }> = [];
 
+    // Debounce resize to avoid layout thrashing
+    let resizeTimeout: number | undefined;
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
+      resizeTimeout = window.setTimeout(() => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }, 100);
+    };
 
     const createParticles = () => {
-      const particleCount = Math.min(50, Math.floor(window.innerWidth / 20))
-
+      const particleCount = Math.min(50, Math.floor(window.innerWidth / 20));
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -38,59 +42,50 @@ export function ParticleBackground() {
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 2 + 1,
           opacity: Math.random() * 0.5 + 0.1,
-        })
+        });
       }
-    }
+    };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((particle, index) => {
-        // Update position
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1
-
-        // Draw particle
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(252, 163, 17, ${particle.opacity})`
-        ctx.fill()
-
-        // Draw connections
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(252, 163, 17, ${particle.opacity})`;
+        ctx.fill();
         particles.slice(index + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x
-          const dy = particle.y - otherParticle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 100) {
-            ctx.beginPath()
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(252, 163, 17, ${0.1 * (1 - distance / 100)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.strokeStyle = `rgba(252, 163, 17, ${0.1 * (1 - distance / 100)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
           }
-        })
-      })
+        });
+      });
+      animationId = requestAnimationFrame(animate);
+    };
 
-      animationId = requestAnimationFrame(animate)
-    }
+    resizeCanvas();
+    createParticles();
+    animate();
 
-    resizeCanvas()
-    createParticles()
-    animate()
-
-    window.addEventListener("resize", resizeCanvas)
+    window.addEventListener("resize", resizeCanvas);
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationId)
-    }
-  }, [])
+      window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationId);
+      if (resizeTimeout) window.clearTimeout(resizeTimeout);
+    };
+  }, []);
 
   return <canvas ref={canvasRef} className="particle-bg " style={{ background: "transparent" }} />
 }

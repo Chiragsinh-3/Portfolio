@@ -19,32 +19,35 @@ if (typeof window !== "undefined") {
 export default function Home() {
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
-      let ctx = gsap.context(() => {
-        // Initialize ScrollSmoother
-        const smoother = ScrollSmoother.create({
-          wrapper: "#smooth-wrapper",
-          content: "#smooth-content",
-          smooth: 1.2,
-          effects: false,
-          normalizeScroll: true,
-          ignoreMobileResize: true,
-          smoothTouch: 0.1,
+      // Detect mobile or tablet devices
+      const isMobileOrTablet = /Mobi|Android|iPad|iPhone|iPod|Tablet|Touch/.test(navigator.userAgent)
+      let smoother: ScrollSmoother | undefined
+      let ctx: gsap.Context | undefined
+
+      if (!isMobileOrTablet) {
+        ctx = gsap.context(() => {
+          // Only enable smooth scrolling on desktop
+          smoother = ScrollSmoother.create({
+            wrapper: "#smooth-wrapper",
+            content: "#smooth-content",
+            smooth: 1.2,
+            effects: false,
+            normalizeScroll: true,
+            ignoreMobileResize: true,
+            smoothTouch: 0.1,
+          })
+          // Initial refresh after a short delay to ensure DOM is ready
+          setTimeout(() => {
+            ScrollTrigger.refresh()
+          }, 100)
+          return () => {
+            smoother?.kill()
+          }
         })
-
-
-
-        // Initial refresh after a short delay to ensure DOM is ready
-        setTimeout(() => {
-          ScrollTrigger.refresh()
-        }, 100)
-
-        return () => {
-          smoother?.kill()
-        }
-      })
+      }
 
       return () => {
-        ctx.revert()
+        ctx?.revert()
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
       }
     }
