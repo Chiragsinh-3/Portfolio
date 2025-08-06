@@ -43,7 +43,7 @@ export function AboutSection() {
             <Card className="bg-black-100/10 border-0">
               <CardContent className="p-4 h-full">
                 <div className="relative h-96 overflow-hidden rounded-lg border border-white/10">
-                  <Image src="/image.jpg" alt="Chirag Kachhela" fill className="object-cover " />
+                  <Image src="/IMG_6373.jpg" alt="Chirag Kachhela" fill className="object-cover " />
                 </div>
               </CardContent>
             </Card>
