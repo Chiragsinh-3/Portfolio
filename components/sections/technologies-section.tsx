@@ -25,13 +25,13 @@ const technologies = [
 	{
 		name: "TypeScript",
 		icon: SiTypescript,
-		color: "from-oxford_blue-600 to-oxford_blue-800",
+		color: "from-blue-600 to-oxford_blue-800",
 		description: "Typed JavaScript superset",
 	},
 	{
 		name: "Next.js",
 		icon: SiNextdotjs,
-		color: "from-black-600 to-black-800",
+		color: "from-black-600 to-black-500",
 		description: "React production framework",
 	},
 	{
@@ -79,7 +79,7 @@ const technologies = [
 	{
 		name: "CSS",
 		icon: SiCss3,
-		color: "from-oxford_blue-700 to-oxford_blue-900",
+		color: "from-blue-950 to-oxford_blue-800",
 		description: "Styling language",
 	},
 	{
